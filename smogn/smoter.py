@@ -9,10 +9,6 @@ from smogn.over_sampling import over_sampling
 
 ## synthetic minority over-sampling technique for regression with gaussian noise 
 def smoter(
-    
-    ## main arguments / inputs
-    data,                     ## training set (pandas dataframe)
-    y,                        ## response variable y by name (string)
     k = 5,                    ## num of neighs for over-sampling (pos int)
     pert = 0.02,              ## perturbation / noise percentage (pos real)
     samp_method = "balance",  ## over / under sampling ("balance" or extreme")
@@ -21,6 +17,10 @@ def smoter(
     drop_na_row = True,       ## auto drop rows with nan's (bool)
     replace = False,          ## sampling replacement (bool)
     seed = None,              ## seed for random sampling (pos int or None)
+    
+    ## main arguments / inputs
+    data,                     ## training set (pandas dataframe)
+    y,                        ## response variable y by name (string)
     
     ## phi relevance function arguments / inputs
     rel_thres = 0.5,          ## relevance threshold considered rare (pos real)
@@ -243,7 +243,8 @@ def smoter(
                 index = list(b_index[i].index),
                 perc = s_perc[i],
                 pert = pert,
-                k = k
+                k = k,
+                seed = seed
             )
             
             ## concatenate over-sampling
